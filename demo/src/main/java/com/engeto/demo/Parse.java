@@ -4,12 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Parse {
 
-    static StatesMap s;
-    List<States>l;
+    private StatesMap s;
+    private List<States>l;
 
     public StatesMap parse (String source) throws JsonProcessingException {
         ObjectMapper o = new ObjectMapper();
@@ -19,5 +25,18 @@ public class Parse {
         return s;
 
     }
-
+    public List<States> getArrayList () {
+        l = new ArrayList<>(s.getMapOfStates().values());
+        Collections.sort(l);
+        return l;
+    }
+    public void exportIntoFile (String fileName, String inputString) throws IOException {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            writer.print(inputString);
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getLocalizedMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

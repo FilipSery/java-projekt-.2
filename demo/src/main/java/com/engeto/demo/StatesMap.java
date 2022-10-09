@@ -10,7 +10,6 @@ public class StatesMap {
     @JsonProperty (value = "last_updated")
     private String lastUpdated;
     private String disclaimer;
-    private String rates;
     private Map<String, States> mapOfStates = new HashMap<>();
 
     public String getLastUpdated() {
@@ -29,19 +28,14 @@ public class StatesMap {
         this.disclaimer = disclaimer;
     }
 
-    public String getRates() {
-        return rates;
-    }
-
-    public void setRates(String rates) {
-        this.rates = rates;
-    }
-
     public Map<String, States> getMapOfStates() {
         return mapOfStates;
     }
 
     public void setMapOfStates(Map<String, States> mapOfStates) {
         this.mapOfStates = mapOfStates;
+    }
+    public void setRates(Map<String, States> rates) {
+        this.mapOfStates = rates;
     }
 }

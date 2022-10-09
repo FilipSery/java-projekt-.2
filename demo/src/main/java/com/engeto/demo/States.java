@@ -3,9 +3,11 @@ package com.engeto.demo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class States implements Comparable <States> {
+
     private String country;
-    @JsonProperty (value = "standard_rate")
-    private double standardRate;
+
+    @JsonProperty ("standard_rate")
+    private Double standardRate;
 
     public String getCountry() {
         return country;
@@ -15,7 +17,7 @@ public class States implements Comparable <States> {
         this.country = country;
     }
 
-    public double getStandardRate() {
+    public Double getStandardRate() {
         return standardRate;
     }
 
@@ -25,14 +27,11 @@ public class States implements Comparable <States> {
 
     @Override
     public int compareTo(States o) {
-        return 0;
+        return (int) (this.standardRate - o.getStandardRate());
     }
 
     @Override
     public String toString() {
-        return "States{" +
-                "country='" + country + '\'' +
-                ", standardRate=" + standardRate +
-                '}';
+        return country +", standard rate = " + standardRate +" \n";
     }
 }
